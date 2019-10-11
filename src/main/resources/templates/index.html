@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{'/student/' + ${student.studentId}}"><h1 th:text="'Welcome ' + ${student.name}"></h1></a>
+<form th:action="@{/logout}" method="post" style="margin-bottom: 20px">
+    <input type="submit" value="Sign Out"/>
+</form>
+<div>
+    <table>
+        <tr>
+            <th>Class Id</th>
+            <th>Class name</th>
+            <th>Tool</th>
+        </tr>
+        <tr th:each="clazz: ${clazzList}">
+            <td th:text="${clazz.clazzId}"></td>
+            <td th:text="${clazz.name}"></td>
+            <td><a th:href="@{'/clazz/' + ${clazz.clazzId}}" th:text="Details"></a> </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
